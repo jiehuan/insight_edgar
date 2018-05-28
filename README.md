@@ -10,7 +10,7 @@ The following dictionaries and lists are used for processing.
     active_time  = []   # list of end unix-time of live sessions
     ip_order = []   	# list of live IPs with a sequential order
 	
-https://github.com/jiehuan/insight_edgar/image/flow.png
+![alt text](https://github.com/jiehuan/insight_edgar/image/flow.png "Logo Title Text 1")
 
 
 # Requirements
