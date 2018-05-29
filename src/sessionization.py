@@ -6,7 +6,7 @@ Created on Thu May 24 14:34:29 2018
 @author: jiehuanhuang
 """
 import sys
-import pandas as pd
+import numpy as np
 from dateutil.parser import parse
 
 def sessionization(filein, inactive, fileout):
@@ -115,25 +115,28 @@ def sessionization(filein, inactive, fileout):
 
     #write all un-expired sessions to file
     
-    df = pd.DataFrame(columns=['IP', 'start_time', 'end_time', 't', 'c', 'index'])
+    arr = np.empty((0,6), dtype=object)
 
     for item in main:
         tmp = main[item]
         t = str(int(tmp[3]-tmp[1]+1))
         c = len(count[item])
-        df = df.append({'IP': item, 'start_time': tmp[0], 'end_time': tmp[2], 't': t, 'c': c, 'index': tmp[4]}, ignore_index=True)
-
-    df = df.set_index('IP')
-    df = df.sort_values(by='index')
-    df = df.drop('index', axis=1)
-
-    df.to_csv(fileout, header=False, mode = 'a')
+        result_line = np.array([[item, tmp[0], tmp[2], t, c, tmp[4]]])
+        arr = np.append(arr, result_line, axis=0)
+        
+    arr = arr[arr[:,5].argsort()]
+    arr = arr[:, 0:5]
+    
+    with open(fileout, 'ab') as w:
+        np.savetxt(w, arr, fmt = '%s', delimiter=",")
     
     
 if __name__ == '__main__':
     filenames = sys.argv
     filein = filenames[1]
+
     inactive = filenames[2]
+    
     fileout = filenames [3]
 
     sessionization(filein, inactive, fileout)
