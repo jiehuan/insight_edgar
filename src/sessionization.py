@@ -120,7 +120,7 @@ def sessionization(filein, inactive, fileout):
     for item in main:
         tmp = main[item]
         t = str(int(tmp[3]-tmp[1]+1))
-        c = len(count[item])
+        c = str(len(count[item]))
         result_line = np.array([[item, tmp[0], tmp[2], t, c, tmp[4]]])
         arr = np.append(arr, result_line, axis=0)
         
