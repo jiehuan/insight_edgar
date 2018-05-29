@@ -17,7 +17,7 @@ The following dictionaries and lists are used for processing.
 This solution is code in Python 3.6.5. The following packages need to be imported.
 
 	import sys
-	import pandas as pd
+	import numpy as np
 	from dateutil.parser import parse
 	
 
