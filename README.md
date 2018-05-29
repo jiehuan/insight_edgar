@@ -7,7 +7,7 @@ The following dictionaries and lists are used for processing.
     main = dict()		# key: IP, value: list[start-time, start unix time, end-time, end unix-time]
     time_ip = dict()	# key: last active unix-time, value: list of IPs each in sequential orders
     count = dict()  	# key: IP, value: set of IDs
-    active_time  = []   # list of end unix-time of live sessions
+    active_time  = []	# list of end unix-time of live sessions
 	
 ![Alternate image text](https://github.com/jiehuan/insight_edgar/blob/master/image/flow.png)
 
